@@ -8,7 +8,7 @@ the [Robot Framework Foundation](https://robotframework.org/foundation/)
 that sponsors Robot Framework development.
 
 Voted issues are listed by priority in the section below and all responses to
-the survey are after them. [RESPONSES.csv](RESPONSES.csv) contains
+the survey are after them. [responses.csv](responses.csv) contains
 the raw data with all personal information removed.
 
 ## Issues by priority

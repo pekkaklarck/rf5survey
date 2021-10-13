@@ -24,7 +24,7 @@ class Issue:
 PRIORITY_1 = 5
 PRIORITY_2 = 3
 PRIORITY_3 = 1
-DATA = Path('RESPONSES.csv')
+DATA = Path('responses.csv')
 README = Path('READNE.md')
 
 
