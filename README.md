@@ -198,8 +198,6 @@ priority issues.
 - This is something that a new user would expect to "just work" but the syntax proposals in that issue are not great. Still worth exploring more.
 - I see more and more non-English speakers working with Robot Framework and this may help the barrier of entry for them.
 - 4095- helpful for debugging <br>519- Would tempt cucumber users to migrate on Robot Framework.<br>3625- May help some users to follow organisations standards for test case status.
-- none
-- None
 - Good for the framework itself in gaining more userbase who respect modern support.
 - Good to have
 - This issue is pretty similar with the most important for me, scope of resource keywords
@@ -217,8 +215,6 @@ priority issues.
 - Awesome tool, keep up the good work
 - Keep up the great work!
 - Praiseworthy efforts on the project. Thanks for this open source automation tool
-- none
-- None
 - GL. These votes are great for the community, as otherwise many of us may not have the opportunity to join the development work.
 - First of all, Thank you for creating this great tool. Hats off to you guys (y)<br><br>Need below functionality as well:<br>All assertions should have option to return True/False instead of marking test as Pass/Fail (Should be, Should not be)<br>
 - You're doing great job guys :)

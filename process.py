@@ -73,7 +73,7 @@ def format_prio(title, col_no, max_per_row, responses, issues, lines):
     lines.append('| Issue | Comment |')
     lines.append('|-------|---------|')
     issue_col = [split_issues(row[col_no],max_per_row) for row in responses]
-    comment_col = [row[col_no+1].replace('\n', '<br>') for row in responses]
+    comment_col = [format_comment(row[col_no+1]) for row in responses]
     for indices, comment in zip(issue_col, comment_col):
         if indices:
             issue = ', '.join(f'[#{issue.id}]({issue.url} "{issue.title}")'
@@ -81,9 +81,15 @@ def format_prio(title, col_no, max_per_row, responses, issues, lines):
             lines.append(f'| {issue} | {comment} |')
 
 
+def format_comment(comment):
+    if comment.upper() == 'NONE':
+        return ''
+    return comment.replace('\n', '<br>')
+
+
 def format_comments(title, col_no, responses, lines):
     lines.append(f'## {title}')
-    comments = [row[col_no].replace('\n', '<br>') for row in responses]
+    comments = [format_comment(row[col_no]) for row in responses]
     for comment in comments:
         if comment:
             lines.append(f'- {comment}')
@@ -121,8 +127,9 @@ def read_prio1_comments(responses):
     comments = {}
     for row in responses:
         id, comment = row[:2]
+        comment = format_comment(comment)
         if comment:
-            comments.setdefault(int(id), []).append(comment.replace('\n', '<br>'))
+            comments.setdefault(int(id), []).append(comment)
     return comments
 
 
