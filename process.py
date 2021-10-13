@@ -25,7 +25,7 @@ PRIORITY_1 = 5
 PRIORITY_2 = 3
 PRIORITY_3 = 1
 DATA = Path('responses.csv')
-README = Path('READNE.md')
+README = Path('README.md')
 
 
 def read_responses(path):
