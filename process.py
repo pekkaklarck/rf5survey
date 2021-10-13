@@ -1,12 +1,26 @@
 #!/usr/bin/env python3
 
-import os
-import sys
+"""Script to add prioritized list of issues and all responses to README.md.
+
+Data is read from responses.csv.
+"""
+
 import csv
+import os
+import re
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
 from github import Github
+
+
+PRIORITY_1 = 5
+PRIORITY_2 = 3
+PRIORITY_3 = 1
+ISSUE_URL = 'https://github.com/robotframework/robotframework/issues'
+DATA = Path('responses.csv')
+README = Path('README.md')
 
 
 @dataclass
@@ -18,14 +32,7 @@ class Issue:
 
     @property
     def url(self):
-        return f'https://github.com/robotframework/robotframework/issues/{self.id}'
-
-
-PRIORITY_1 = 5
-PRIORITY_2 = 3
-PRIORITY_3 = 1
-DATA = Path('responses.csv')
-README = Path('README.md')
+        return f'{ISSUE_URL}/{self.id}'
 
 
 def read_responses(path):
@@ -49,7 +56,7 @@ def get_issues(responses):
 
 
 def add_issues(responses, issues):
-    comments = read_prio1_comments(responses)
+    comments = read_prio1_comments(responses, issues)
     write_results(issues, comments)
 
 
@@ -62,34 +69,40 @@ def add_responses(responses, issues):
     format_prio('What other issues you would like to see included?', 4, None,
                 responses, issues, lines)
     format_comments('Free comments to the development team', 5,
-                    responses, lines)
+                    responses, issues, lines)
     format_comments('Free comments to Robot Framework Foundation', 6,
-                    responses, lines)
+                    responses, issues, lines)
     add_content('\n'.join(lines), 'responses')
 
 
 def format_prio(title, col_no, max_per_row, responses, issues, lines):
-    lines.append(f'### {title}')
+    lines.append(f'\n### {title}\n')
     lines.append('| Issue | Comment |')
     lines.append('|-------|---------|')
     issue_col = [split_issues(row[col_no],max_per_row) for row in responses]
-    comment_col = [format_comment(row[col_no+1]) for row in responses]
+    comment_col = [format_comment(row[col_no+1], issues) for row in responses]
     for indices, comment in zip(issue_col, comment_col):
         if indices:
-            issue = ', '.join(f'[#{issue.id}]({issue.url} "{issue.title}")'
+            issue = ', '.join(f'[#{issue.id}]({issue.url} "{issue.title}")'
                               for issue in [issues[i] for i in indices])
             lines.append(f'| {issue} | {comment} |')
 
 
-def format_comment(comment):
-    if comment.upper() == 'NONE':
-        return ''
-    return comment.replace('\n', '<br>')
+def format_comment(comment, issues):
+    def replace_issue(match):
+        issue = issues.get(int(match.group(1)))
+        if not issue:
+            return match.group(0)
+        return f'[#{issue.id}]({ISSUE_URL }/{issue.id} "{issue.title}") '
+
+    comment = comment.replace('\n', '<br>')
+    comment = re.sub(r'#?(\d{3,4}) ?', replace_issue, comment)
+    return comment if comment.upper() != 'NONE' else ''
 
 
-def format_comments(title, col_no, responses, lines):
+def format_comments(title, col_no, responses, issues, lines):
     lines.append(f'## {title}')
-    comments = [format_comment(row[col_no]) for row in responses]
+    comments = [format_comment(row[col_no], issues) for row in responses]
     for comment in comments:
         if comment:
             lines.append(f'- {comment}')
@@ -123,11 +136,11 @@ def combine_issues(prio1_issues, prio2_issues, prio3_issues):
     return issues
 
 
-def read_prio1_comments(responses):
+def read_prio1_comments(responses, issues):
     comments = {}
     for row in responses:
         id, comment = row[:2]
-        comment = format_comment(comment)
+        comment = format_comment(comment, issues)
         if comment:
             comments.setdefault(int(id), []).append(comment)
     return comments
@@ -162,8 +175,8 @@ def write_results(issues, comments):
 
 
 def add_content(content, name):
-    start = f'\n<!-- start {name} -->\n'
-    end = f'\n<!-- end {name} -->\n'
+    start = f'\n<!-- start {name} (generated) -->\n'
+    end = f'\n<!-- end {name} (generated) -->\n'
     old = README.read_text()
     before, old = old.split(start)
     old, after = old.split(end)
