@@ -8,15 +8,15 @@ the [Robot Framework Foundation](https://robotframework.org/foundation/)
 that sponsors Robot Framework development.
 
 Voted issues are listed by priority in the section below and all responses to
-the survey are after them. [responses.csv](responses.csv) contains
-the raw data with all personal information removed.
+the survey are after them. Also [raw data](responses.csv) is available with
+all personal information removed.
 
 ## Issues by priority
 
 Voted issues are listed below by priority with comments explaining why they
-were considered important. Comments are got only from issues with the highest
-priority. How the weighted priority is calculated is explained in the next
-section.
+were considered important. Issues were voted in three priorities and higher
+priority issues had a higher weight. Comments are got only from the highest
+priority issues.
 
 <!-- start issues -->
 - [#3075](https://github.com/robotframework/robotframework/issues/3075) Native support for `TRY/EXCEPT` functionality (weighted priority: 86)
@@ -82,18 +82,6 @@ section.
 - [#4068](https://github.com/robotframework/robotframework/issues/4068) Make test and suite messages available as plain text and HTML separately (weighted priority: 1)
 <!-- end issues -->
 
-## Calculating priority
-
-Issues were voted in three priorities with limits for how many issues could
-get higher priorities. In the final priority all votes were combined so that
-higher priority issues had a higher weight. Maximum number of issues per
-priority and their weights are shown in the table below.
-
-| Priority | Max issues | Weight |
-|----------|------------|--------|
-| Critical | 1          | 5      |
-| High     | 3          | 3      |
-| Medium   | unlimited  | 1      |
 
 ## All responses
 
