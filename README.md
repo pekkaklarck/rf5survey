@@ -11,6 +11,12 @@ Voted issues are listed by priority in the section below and all responses to
 the survey are after them. Also [raw data](responses.csv) is available with
 all personal information removed.
 
+Two online tickets to [RoboCon 2022](https://robocon.io) were raffled among
+the respondents who left their contact information. The lucky winners,
+selected by the [random](https://docs.python.org/3/library/random.html) module,
+are Anton Pääkkönen and Veijo Yli-Kätkä. Congratulations to them and thanks
+for everyone who participated the survey!
+
 ## Issues by priority
 
 Voted issues are listed below by priority with comments explaining why they
