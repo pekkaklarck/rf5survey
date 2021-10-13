@@ -203,22 +203,6 @@ Hover mouse over the issue id to see its title.
 | [#4093](https://github.com/robotframework/robotframework/issues/4093 "Inline `IF` support") | More readable code and reduce of testcase body length. of course sometimes having a clear block of if-else keywords is better, but especially for one liners its very good.  |
 | [#4039](https://github.com/robotframework/robotframework/issues/4039 "Incomplete Exception Trace in log.html (Exception Chaining)"), [#3625](https://github.com/robotframework/robotframework/issues/3625 "Support custom statuses") | More detailed log is always useful. Custom status could be very practical and informative for other co-workers also. |
 ## Free comments to the development team
-- This is something that a new user would expect to "just work" but the syntax proposals in that issue are not great. Still worth exploring more.
-- I see more and more non-English speakers working with Robot Framework and this may help the barrier of entry for them.
-- [#4095](https://github.com/robotframework/robotframework/issues/4095 "Add type formatter to Log keyword") - helpful for debugging <br>[#519](https://github.com/robotframework/robotframework/issues/519 "Given/When/Then should support other languages than English") - Would tempt cucumber users to migrate on Robot Framework.<br>[#3625](https://github.com/robotframework/robotframework/issues/3625 "Support custom statuses") - May help some users to follow organisations standards for test case status.
-- Good for the framework itself in gaining more userbase who respect modern support.
-- Good to have
-- This issue is pretty similar with the most important for me, scope of resource keywords
-- I am a fan of writing tests in my language.
-- Just so common that it would be nice to have
-- async is increasingly important!
-- Whatever makes RF more compact.
-- It would be great to use keywords in places where you would normally only have simple strings (or variables).
-- To improve reports
-- [#3017](https://github.com/robotframework/robotframework/issues/3017 "Add return type to libdoc output") to get easily the signature of a kwd, [#4039](https://github.com/robotframework/robotframework/issues/4039 "Incomplete Exception Trace in log.html (Exception Chaining)") to improve analysis
-- More readable code and reduce of testcase body length. of course sometimes having a clear block of if-else keywords is better, but especially for one liners its very good. 
-- More detailed log is always useful. Custom status could be very practical and informative for other co-workers also.
-## Free comments to Robot Framework Foundation
 - [#3187](https://github.com/robotframework/robotframework/issues/3187 "Inline keyword call syntax") and [#3761](https://github.com/robotframework/robotframework/issues/3761 "Native syntax to create local variables") are excellent ideas, but not yet ready for implementation. Proposed syntaxes might still cause too much confusion.
 - Awesome tool, keep up the good work
 - Keep up the great work!
@@ -237,4 +221,19 @@ Hover mouse over the issue id to see its title.
 - Thanks for the work you do!
 - Thanks for the hard work
 - Keep up the good work! You are always there to help out in slack and mailing list. Hope this year i can dedicate some work time as well to help out. 
+## Free comments to Robot Framework Foundation
+- Thank you for making this available to all and 7keeping it updated on a regular basis. 
+- Keep up the great work!
+- Thanks a lot for supporting and funding this awesome automation tool.
+- Has there been any thought to developing an official style guide?
+- Thanks for releasing this as open source, please continue to do so :P
+- very useful and perfect ATDD
+- You are on the right side
+- Keep up the good work!
+- Good luck! :)
+- Thanks for all the fish.
+- Thanks for robot framework!
+- It will be good to have some students (College) activities
+- I am sure the foundation will grow year by year and it definitely deserves it! Really good work with the conferences, well done! 
+- Foundation could arrange more trainings and workshops than just once/twice a year.
 <!-- end responses (generated) -->

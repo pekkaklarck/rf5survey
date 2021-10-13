@@ -68,9 +68,9 @@ def add_responses(responses, issues):
                 responses, issues, lines)
     format_prio('Which other issues you would like to see included? Why?', 4, None,
                 responses, issues, lines)
-    format_comments('Free comments to the development team', 5,
+    format_comments('Free comments to the development team', 6,
                     responses, issues, lines)
-    format_comments('Free comments to Robot Framework Foundation', 6,
+    format_comments('Free comments to Robot Framework Foundation', 7,
                     responses, issues, lines)
     add_content('\n'.join(lines), 'responses')
 
