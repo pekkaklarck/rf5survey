@@ -62,11 +62,11 @@ def add_issues(responses, issues):
 
 def add_responses(responses, issues):
     lines = []
-    format_prio('What is the single most important feature for you?', 0, 1,
+    format_prio('What is the single most important feature for you? Why?', 0, 1,
                 responses, issues, lines)
-    format_prio('What three issues have second-highest priority?', 2, 3,
+    format_prio('Which three issues have second-highest priority? Why?', 2, 3,
                 responses, issues, lines)
-    format_prio('What other issues you would like to see included?', 4, None,
+    format_prio('Which other issues you would like to see included? Why?', 4, None,
                 responses, issues, lines)
     format_comments('Free comments to the development team', 5,
                     responses, issues, lines)

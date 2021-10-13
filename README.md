@@ -2,9 +2,9 @@
 
 We had a [survey](https://forms.gle/E9CKhYLxvY4uKQR46) asking what features
 [Robot Framework](http://robotframework.org) community members would like to
-see in the forthcoming Robot Framework 5.0 release. In addition to that, they
-could give free comments to the Robot Framework development team  and to
-the [Robot Framework Foundation](https://robotframework.org/foundation/)
+see in the forthcoming Robot Framework 5.0 release. In addition to that,
+respondents could give free comments to the Robot Framework development team
+and to the [Robot Framework Foundation](https://robotframework.org/foundation/)
 that sponsors Robot Framework development.
 
 Voted issues are listed by priority in the section below and all responses to
@@ -89,7 +89,7 @@ Hover mouse over the issue id to see its title.
 
 <!-- start responses (generated) -->
 
-### What is the single most important feature for you?
+### What is the single most important feature for you? Why?
 
 | Issue | Comment |
 |-------|---------|
@@ -135,7 +135,7 @@ Hover mouse over the issue id to see its title.
 | [#4078](https://github.com/robotframework/robotframework/issues/4078 "New `RETURN` statement for returning from a user keyword") | There has been many times a situation in my work where returning value inside IF..ELSE could have been very useful.  |
 | [#4084](https://github.com/robotframework/robotframework/issues/4084 "`WHILE` loop") | It'll be quite handy and useful in certain situations instead of using WUKS. |
 
-### What three issues have second-highest priority?
+### Which three issues have second-highest priority? Why?
 
 | Issue | Comment |
 |-------|---------|
@@ -179,7 +179,7 @@ Hover mouse over the issue id to see its title.
 | [#4084](https://github.com/robotframework/robotframework/issues/4084 "`WHILE` loop"), [#4079](https://github.com/robotframework/robotframework/issues/4079 "New `BREAK` and `CONTINUE` statemens for `FOR` loop control"), [#3075](https://github.com/robotframework/robotframework/issues/3075 "Native support for `TRY/EXCEPT` functionality") | They move RF closer to native coding conventions which is good. |
 | [#4079](https://github.com/robotframework/robotframework/issues/4079 "New `BREAK` and `CONTINUE` statemens for `FOR` loop control"), [#4078](https://github.com/robotframework/robotframework/issues/4078 "New `RETURN` statement for returning from a user keyword"), [#4093](https://github.com/robotframework/robotframework/issues/4093 "Inline `IF` support") |  |
 
-### What other issues you would like to see included?
+### Which other issues you would like to see included? Why?
 
 | Issue | Comment |
 |-------|---------|
