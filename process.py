@@ -4,6 +4,7 @@ import os
 import sys
 import csv
 from dataclasses import dataclass
+from pathlib import Path
 
 from github import Github
 
@@ -23,9 +24,8 @@ class Issue:
 PRIORITY_1 = 5
 PRIORITY_2 = 3
 PRIORITY_3 = 1
-DATA = 'responses.csv'
-RESPONSES = 'RESPONSES.md'
-ISSUES = 'ISSUES.md'
+DATA = Path('RESPONSES.csv')
+README = Path('READNE.md')
 
 
 def read_responses(path):
@@ -48,50 +48,45 @@ def get_issues(responses):
     return process_issues(issues_and_priorities)
 
 
-def format_responses_and_issues(responses, issues):
-    format_responses(responses, issues)
-    format_issues(responses, issues)
-
-
-def format_issues(responses, issues):
+def add_issues(responses, issues):
     comments = read_prio1_comments(responses)
     write_results(issues, comments)
 
 
-def format_responses(responses, issues):
-    with open(RESPONSES, 'w') as file:
-        file.write('# Responses to survey questions\n')
-        format_prio('What is the single most important feature for you?', 0, 1,
-                    responses, issues, file)
-        format_prio('What three issues have second-highest priority?', 2, 3,
-                    responses, issues, file)
-        format_prio('What other issues you would like to see included?', 4, None,
-                    responses, issues, file)
-        format_comments('Free comments to the development team', 5,
-                        responses, file)
-        format_comments('Free comments to Robot Framework Foundation', 6,
-                        responses, file)
+def add_responses(responses, issues):
+    lines = []
+    format_prio('What is the single most important feature for you?', 0, 1,
+                responses, issues, lines)
+    format_prio('What three issues have second-highest priority?', 2, 3,
+                responses, issues, lines)
+    format_prio('What other issues you would like to see included?', 4, None,
+                responses, issues, lines)
+    format_comments('Free comments to the development team', 5,
+                    responses, lines)
+    format_comments('Free comments to Robot Framework Foundation', 6,
+                    responses, lines)
+    add_content('\n'.join(lines), 'responses')
 
 
-def format_prio(title, col_no, max_per_row, responses, issues, file):
-    file.write(f'## {title}\n')
-    file.write('| Issue | Comment |\n')
-    file.write('|-------|---------|\n')
+def format_prio(title, col_no, max_per_row, responses, issues, lines):
+    lines.append(f'### {title}')
+    lines.append('| Issue | Comment |')
+    lines.append('|-------|---------|')
     issue_col = [split_issues(row[col_no],max_per_row) for row in responses]
     comment_col = [row[col_no+1].replace('\n', '<br>') for row in responses]
     for indices, comment in zip(issue_col, comment_col):
         if indices:
             issue = ', '.join(f'[#{issue.id}]({issue.url} "{issue.title}")'
                               for issue in [issues[i] for i in indices])
-            file.write(f'| {issue} | {comment} |\n')
+            lines.append(f'| {issue} | {comment} |')
 
 
-def format_comments(title, col_no, responses, file):
-    file.write(f'## {title}\n')
+def format_comments(title, col_no, responses, lines):
+    lines.append(f'## {title}')
     comments = [row[col_no].replace('\n', '<br>') for row in responses]
     for comment in comments:
         if comment:
-            file.write(f'- {comment}\n')
+            lines.append(f'- {comment}')
 
 
 def split_issues(row, max_per_row=None):
@@ -149,31 +144,33 @@ def get_repo():
 
 
 def write_results(issues, comments):
-    marker = '<!-- insert issues below -->\n'
-    with open(ISSUES) as file:
-        content = file.read().split(marker)[0]
-    with open(ISSUES, 'w') as file:
+    lines = []
+    for issue in issues.values():
+        if issue.open:
+            lines.append(f'- [#{issue.id}]({issue.url}) {issue.title} '
+                         f'(weighted priority: {issue.priority})')
+            for comment in comments.get(issue.id, ()):
+                lines.append(f'    - {comment}')
+    add_content('\n'.join(lines), 'issues')
+
+
+def add_content(content, name):
+    start = f'\n<!-- start {name} -->\n'
+    end = f'\n<!-- end {name} -->\n'
+    old = README.read_text()
+    before, old = old.split(start)
+    old, after = old.split(end)
+    with open(README, 'w') as file:
+        file.write(before)
+        file.write(start)
         file.write(content)
-        file.write(marker)
-        for issue in issues.values():
-            if issue.open:
-                file.write(f'- [#{issue.id}]({issue.url}) {issue.title} '
-                           f'(weighted priority: {issue.priority})\n')
-                for comment in comments.get(issue.id, ()):
-                    file.write(f'    - {comment}\n')
+        file.write(end)
+        file.write(after)
 
 
 if __name__ == '__main__':
-    usage = f'Usage: {sys.argv[0]} responses|issues|both'
-    if len(sys.argv) < 2:
-        sys.exit(usage)
-    action = sys.argv[1]
-    actions = {'responses': format_responses,
-               'issues': format_issues,
-               'both': format_responses_and_issues}
-    if action not in actions:
-        sys.exit(usage)
-    path = DATA if len(sys.argv) == 2 else sys.argv[2]
+    path = DATA if len(sys.argv) == 1 else sys.argv[1]
     responses = read_responses(path)
     issues = get_issues(responses)
-    actions[action](responses, issues)
+    add_issues(responses, issues)
+    add_responses(responses, issues)
