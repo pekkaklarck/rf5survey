@@ -22,7 +22,8 @@ for everyone who participated the survey!
 Voted issues are listed below by priority with comments explaining why they
 were considered important. Issues were voted in three priorities and higher
 priority issues had a higher weight. Comments are got only from the highest
-priority issues.
+priority issues. All issues currently targeted for RF 5.0 can be found in
+the [issue tracker](https://github.com/robotframework/robotframework/issues?q=is%3Aopen+is%3Aissue+milestone%3Av5.0).
 
 <!-- start issues (generated) -->
 - [#3075](https://github.com/robotframework/robotframework/issues/3075) Native support for `TRY/EXCEPT` functionality (weighted priority: 86)
